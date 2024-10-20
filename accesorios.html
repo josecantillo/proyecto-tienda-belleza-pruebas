@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesorios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #fdd2e5;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 60px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f475b3;
+        }
+
+        .accessories-banner {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .accessories-banner img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .products-section {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #f475b3;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #fdd2e5;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="img/logo.png" alt="Logo de la tienda">
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="accesorios.html">Accesorios</a>
+        <a href="brochas.html">Brochas</a>
+        <a href="labios.html">Labios</a>
+        <a href="cuidado-de-la-piel.html">Cuidado de la Piel</a>
+        <a href="ojos.html">Ojos</a>
+        <a href="carrito.html">Carrito</a>
+        <a href="inicio-sesion.html">Iniciar Sesión</a>
+    </nav>
+</header>
+
+
+
+
+<section class="accessories-banner">
+    <h1>Descubre nuestros Accesorios</h1>
+    <img src="imagenes/banner_accesorios.JPG" alt="Accesorios">
+</section>
+
+<section class="products-section">
+    <div class="product-card">
+        <img src="https://via.placeholder.com/200x200" alt="Accesorio 1">
+        <h3>Accesorio 1</h3>
+        <p>$15,000</p>
+        <button>Agregar al Carrito</button>
+    </div>
+
+    <div class="product-card">
+        <img src="https://via.placeholder.com/200x200" alt="Accesorio 2">
+        <h3>Accesorio 2</h3>
+        <p>$20,000</p>
+        <button>Agregar al Carrito</button>
+    </div>
+
+    <div class="product-card">
+        <img src="https://via.placeholder.com/200x200" alt="Accesorio 3">
+        <h3>Accesorio 3</h3>
+        <p>$12,000</p>
+        <button>Agregar al Carrito</button>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

@@ -6,6 +6,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     actualizarCarrito();
 
+	// Funciones para el carrusel del banner
+    let diapositivaActual = 0;
+    const diapositivas = document.querySelectorAll(".carousel img");
+
+    function mostrarDiapositiva(indice) {
+        diapositivas.forEach((diapositiva, i) => {
+            diapositiva.style.transform = `translateX(${(i - indice) * 100}%)`;
+        });
+    }
+
+    function siguienteDiapositiva() {
+        diapositivaActual = (diapositivaActual + 1) % diapositivas.length;
+        mostrarDiapositiva(diapositivaActual);
+    }
+
+    function anteriorDiapositiva() {
+        diapositivaActual = (diapositivaActual - 1 + diapositivas.length) % diapositivas.length;
+        mostrarDiapositiva(diapositivaActual);
+    }
+
+    // Inicializar el carrusel
+    mostrarDiapositiva(diapositivaActual);
+
+    // Añadir eventos a los botones de control del carrusel
+    document.querySelector('.carousel-button-prev').addEventListener('click', anteriorDiapositiva);
+    document.querySelector('.carousel-button-next').addEventListener('click', siguienteDiapositiva);
+});
+
+	// Inicializar el carrusel
+	mostrarDiapositiva(diapositivaActual);
+
+
     // Función para actualizar la visualización del carrito
     function actualizarCarrito() {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];

@@ -427,6 +427,21 @@ nav a:hover {
     color: #fff;
 }
 
+.carousel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 400px; /* Puedes ajustar esta altura si es necesario */
+    position: relative;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto; /* Deja que la altura sea ajustada automáticamente */
+    object-fit: contain; /* Si quieres ver toda la imagen sin cortes, usa contain */
+    transition: transform 0.5s ease-in-out;
+}
+
 
 /* Footer */
 footer {

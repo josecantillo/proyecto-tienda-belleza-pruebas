@@ -3,80 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión / Crear Cuenta</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-        }
-
-        header {
-            background-color: #fdd2e5;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            max-height: 60px;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #f475b3;
-        }
-
-        .login-section {
-            display: flex;
-            justify-content: space-around;
-            margin: 50px;
-        }
-
-        .login-form, .register-form {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 45%;
-        }
-
-        input[type="text"], input[type="password"], input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #f475b3;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #fdd2e5;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
 <header>
     <div class="logo">
-        <img src="img/logo.png" alt="Logo de la tienda">
+        <img src="img/logo.jpg" alt="Logo de la tienda">
     </div>
     <nav>
         <a href="index.html">Inicio</a>
@@ -90,43 +24,37 @@
     </nav>
 </header>
 
-
-
+<!-- Título de la sección -->
+<h1 class="section-title">Iniciar Sesión</h1>
 
 <section class="login-section">
-    <div class="login-form">
-        <h2>Iniciar Sesión</h2>
-        <form>
-            <label for="email">Correo Electrónico</label>
-            <input type="email" id="email" placeholder="Ingresa tu correo">
-            
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" placeholder="Ingresa tu contraseña">
-            
-            <button type="submit">Ingresar</button>
-        </form>
-    </div>
+    <!-- Aquí va el formulario de inicio de sesión -->
+    <div class="product-card-login">
+        <h3>Iniciar Sesión</h3>
+        <form action="/login" method="POST">
+            <input type="text" placeholder="Usuario" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+			
+			</form>
+	<form onsubmit="iniciarSesion(); return false;">
+    <!-- Campos de inicio de sesión -->
+	</form>
 
-    <div class="register-form">
-        <h2>Crear Cuenta</h2>
-        <form>
-            <label for="name">Nombre Completo</label>
-            <input type="text" id="name" placeholder="Ingresa tu nombre">
-            
-            <label for="email">Correo Electrónico</label>
-            <input type="email" id="email" placeholder="Ingresa tu correo">
-            
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" placeholder="Crea una contraseña">
-            
-            <button type="submit">Crear Cuenta</button>
-        </form>
+        <!-- Enlace al formulario de registro -->
+        <a style= "color:#00696f"; href="registro.html" class="register-link"> ¿No tienes cuenta? <br> Regístrate aquí.</br> </a>
     </div>
+     
 </section>
+
+<!-- Espacio entre productos y footer -->
+<div style="height: 50px;"></div>
 
 <footer>
     <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
 </footer>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>

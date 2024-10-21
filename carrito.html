@@ -4,94 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-        }
-
-        header {
-            background-color: #fdd2e5;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            max-height: 60px;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #f475b3;
-        }
-
-        .cart-section {
-            margin: 50px;
-        }
-
-        .cart-items {
-            margin-bottom: 30px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-        }
-
-        .cart-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .cart-item h3, .cart-item p {
-            margin: 0;
-        }
-
-        .cart-summary {
-            text-align: right;
-        }
-
-        .cart-summary p {
-            margin: 5px 0;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #f475b3;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #fdd2e5;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
 <header>
     <div class="logo">
-        <img src="img/logo.png" alt="Logo de la tienda">
+        <img src="img/logo.jpg" alt="Logo de la tienda">
     </div>
     <nav>
         <a href="index.html">Inicio</a>
@@ -105,35 +24,27 @@
     </nav>
 </header>
 
+<h1 class="section-title">Carrito de compras</h1>
 
-
-
-<section class="cart-section">
-    <h1>Tu Carrito de Compras</h1>
-
-    <div class="cart-items">
-        <div class="cart-item">
-            <img src="https://via.placeholder.com/100" alt="Producto 1">
-            <div>
-                <h3>Producto 1</h3>
-                <p>$25,000</p>
-            </div>
-            <button>Eliminar</button>
-        </div>
-
-        <div class="cart-item">
-            <img src="https://via.placeholder.com/100" alt="Producto 2">
-            <div>
-                <h3>Producto 2</h3>
-                <p>$30,000</p>
-            </div>
-            <button>Eliminar</button>
-        </div>
+<!-- Contenedor principal -->
+<section class="carrito-section">
+    <div class="carrito-productos">
+        <!-- Productos agregados se mostrarán aquí -->
     </div>
 
-    <div class="cart-summary">
-        <p>Total: $55,000</p>
-        <button>Pagar</button>
+    <div class="resumen-compra">
+        <h3>Ingresar cupón de descuento</h3>
+        <input type="text" placeholder="Cupón de descuento">
+        <button class="btn-aplicar">Aplicar</button>
+
+        <div class="resumen-detalles">
+            <p>Subtotal: <span>$0.00</span></p>
+            <h3>Total: <span>$0.00</span></h3>
+        </div>
+
+        <button class="btn-pagar">Ir a pagar / Total</button>
+        <button class="btn-seguir-comprando">Seguir comprando</button>
+        <button class="btn-vaciar-carrito">Vaciar carrito</button>
     </div>
 </section>
 
@@ -141,5 +52,6 @@
     <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
 </footer>
 
+<script src="js/script.js"></script>
 </body>
 </html>

@@ -4,90 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesorios</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-        }
-
-        header {
-            background-color: #fdd2e5;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            max-height: 60px;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #f475b3;
-        }
-
-        .accessories-banner {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .accessories-banner img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .products-section {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .product-card button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #f475b3;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: #fdd2e5;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
 <header>
     <div class="logo">
-        <img src="img/logo.png" alt="Logo de la tienda">
+        <img src="img/logo.jpg" alt="Logo de la tienda">
     </div>
     <nav>
         <a href="index.html">Inicio</a>
@@ -101,40 +24,139 @@
     </nav>
 </header>
 
-
-
-
-<section class="accessories-banner">
-    <h1>Descubre nuestros Accesorios</h1>
-    <img src="imagenes/banner_accesorios.JPG" alt="Accesorios">
-</section>
+<!-- Título de la sección -->
+<h1 class="section-title">Accesorios</h1>
 
 <section class="products-section">
+    <!-- Producto 1 -->
     <div class="product-card">
-        <img src="https://via.placeholder.com/200x200" alt="Accesorio 1">
+        <img src="img/accesorios/accesorio1.jpg" alt="Accesorio 1">
         <h3>Accesorio 1</h3>
         <p>$15,000</p>
-        <button>Agregar al Carrito</button>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
     </div>
 
+    <!-- Producto 2 -->
     <div class="product-card">
-        <img src="https://via.placeholder.com/200x200" alt="Accesorio 2">
+        <img src="img/accesorios/accesorio2.jpg" alt="Accesorio 2">
         <h3>Accesorio 2</h3>
         <p>$20,000</p>
-        <button>Agregar al Carrito</button>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
     </div>
 
+    <!-- Producto 3 -->
     <div class="product-card">
-        <img src="https://via.placeholder.com/200x200" alt="Accesorio 3">
+        <img src="img/accesorios/accesorio3.jpg" alt="Accesorio 3">
         <h3>Accesorio 3</h3>
         <p>$12,000</p>
-        <button>Agregar al Carrito</button>
+       <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio4.jpg" alt="Accesorio 4">
+        <h3>Accesorio 4</h3>
+        <p>$15,500</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 5 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio5.jpg" alt="Accesorio 5">
+        <h3>Accesorio 5</h3>
+        <p>$18,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 6 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio6.jpg" alt="Accesorio 6">
+        <h3>Accesorio 6</h3>
+        <p>$22,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 7 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio7.jpg" alt="Accesorio 7">
+        <h3>Accesorio 7</h3>
+        <p>$14,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 8 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio8.jpg" alt="Accesorio 8">
+        <h3>Accesorio 8</h3>
+        <p>$19,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 9 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio9.jpg" alt="Accesorio 9">
+        <h3>Accesorio 9</h3>
+        <p>$17,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 10 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio10.jpg" alt="Accesorio 10">
+        <h3>Accesorio 10</h3>
+        <p>$12,500</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 11 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio11.jpg" alt="Accesorio 11">
+        <h3>Accesorio 11</h3>
+        <p>$23,000</p>
+       <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 12 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio12.jpg" alt="Accesorio 12">
+        <h3>Accesorio 12</h3>
+        <p>$26,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 13 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio13.jpg" alt="Accesorio 13">
+        <h3>Accesorio 13</h3>
+        <p>$14,500</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 14 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio14.jpg" alt="Accesorio 14">
+        <h3>Accesorio 14</h3>
+        <p>$21,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
+    </div>
+
+    <!-- Producto 15 -->
+    <div class="product-card">
+        <img src="img/accesorios/accesorio15.jpg" alt="Accesorio 15">
+        <h3>Accesorio 15</h3>
+        <p>$28,000</p>
+        <button class="btn-agregar-carrito">Agregar al carrito</button>
     </div>
 </section>
+
+<!-- Espacio entre productos y footer -->
+<div style="height: 50px;"></div>
 
 <footer>
     <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
 </footer>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>

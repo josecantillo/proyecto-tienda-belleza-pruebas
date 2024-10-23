@@ -1,44 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Inicializar el carrito si no existe en localStorage
+    // --- Funciones del carrito ---
     if (!localStorage.getItem('carrito')) {
         localStorage.setItem('carrito', JSON.stringify([]));
     }
 
     actualizarCarrito();
 
-	// Funciones para el carrusel del banner
-    let diapositivaActual = 0;
-    const diapositivas = document.querySelectorAll(".carousel img");
-
-    function mostrarDiapositiva(indice) {
-        diapositivas.forEach((diapositiva, i) => {
-            diapositiva.style.transform = `translateX(${(i - indice) * 100}%)`;
-        });
-    }
-
-    function siguienteDiapositiva() {
-        diapositivaActual = (diapositivaActual + 1) % diapositivas.length;
-        mostrarDiapositiva(diapositivaActual);
-    }
-
-    function anteriorDiapositiva() {
-        diapositivaActual = (diapositivaActual - 1 + diapositivas.length) % diapositivas.length;
-        mostrarDiapositiva(diapositivaActual);
-    }
-
-    // Inicializar el carrusel
-    mostrarDiapositiva(diapositivaActual);
-
-    // Añadir eventos a los botones de control del carrusel
-    document.querySelector('.carousel-button-prev').addEventListener('click', anteriorDiapositiva);
-    document.querySelector('.carousel-button-next').addEventListener('click', siguienteDiapositiva);
-});
-
-	// Inicializar el carrusel
-	mostrarDiapositiva(diapositivaActual);
-
-
-    // Función para actualizar la visualización del carrito
     function actualizarCarrito() {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         const contenedorCarrito = document.querySelector('.carrito-productos');
@@ -78,24 +45,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Función para agregar productos al carrito
-	function agregarProducto(nombreProducto, precioProducto, imagenProducto) {
-		console.log("Agregando producto:", nombreProducto); // Línea de verificación
-		const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-		const productoExistente = carrito.find(p => p.nombre === nombreProducto);
+    function agregarProducto(nombreProducto, precioProducto, imagenProducto) {
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const productoExistente = carrito.find(p => p.nombre === nombreProducto);
 
-		if (productoExistente) {
-			productoExistente.cantidad += 1;
-		} else {
-			carrito.push({ nombre: nombreProducto, precio: precioProducto, cantidad: 1, imagen: imagenProducto });
-		}
+        if (productoExistente) {
+            productoExistente.cantidad += 1;
+        } else {
+            carrito.push({ nombre: nombreProducto, precio: precioProducto, cantidad: 1, imagen: imagenProducto });
+        }
 
-		localStorage.setItem('carrito', JSON.stringify(carrito));
-		actualizarCarrito();
-	}
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        actualizarCarrito();
+    }
 
-
-    // Función para eliminar productos del carrito
     function eliminarProducto(nombreProducto) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         const productoExistente = carrito.find(p => p.nombre === nombreProducto);
@@ -110,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
         actualizarCarrito();
     }
 
-    // Función para añadir los eventos de incrementar y decrementar
     function agregarEventosCarrito() {
         document.querySelectorAll('.btn-incrementar').forEach(boton => {
             boton.addEventListener('click', function () {
@@ -136,15 +98,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Evento para agregar productos desde la página de productos
     document.querySelectorAll('.btn-agregar-carrito').forEach(boton => {
-    boton.addEventListener('click', function () {
-        const productoCard = this.closest('.product-card');
-        const nombreProducto = productoCard.querySelector('h3').textContent;
-        const precioProducto = parseFloat(productoCard.querySelector('p').textContent.replace('$', '').replace(',', ''));
-        const imagenProducto = productoCard.querySelector('img').src;
+        boton.addEventListener('click', function () {
+            const productoCard = this.closest('.product-card');
+            const nombreProducto = productoCard.querySelector('h3').textContent;
+            const precioProducto = parseFloat(productoCard.querySelector('p').textContent.replace('$', '').replace(',', ''));
+            const imagenProducto = productoCard.querySelector('img').src;
 
-        agregarProducto(nombreProducto, precioProducto, imagenProducto);
+            agregarProducto(nombreProducto, precioProducto, imagenProducto);
+        });
     });
-});
+
+    // --- Carrusel de imágenes del banner ---
+    let diapositivaActual = 0;
+    const diapositivas = document.querySelectorAll(".carousel img");
+
+    function mostrarDiapositiva(indice) {
+        diapositivas.forEach((diapositiva, i) => {
+            diapositiva.style.transform = `translateX(${(i - indice) * 100}%)`;
+        });
+    }
+
+    function siguienteDiapositiva() {
+        diapositivaActual = (diapositivaActual + 1) % diapositivas.length;
+        mostrarDiapositiva(diapositivaActual);
+    }
+
+    function anteriorDiapositiva() {
+        diapositivaActual = (diapositivaActual - 1 + diapositivas.length) % diapositivas.length;
+        mostrarDiapositiva(diapositivaActual);
+    }
+
+    document.querySelector('.carousel-button-prev').addEventListener('click', anteriorDiapositiva);
+    document.querySelector('.carousel-button-next').addEventListener('click', siguienteDiapositiva);
+
+    // Inicializar el carrusel
+    mostrarDiapositiva(diapositivaActual);
 
     // --- Registro e inicio de sesión ---
     function registrarUsuario() {
@@ -162,27 +150,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const departamento = document.querySelector('input[placeholder="Departamento"]').value;
         const pais = document.querySelector('input[placeholder="País"]').value;
 
-        // Crear el objeto del usuario
         const nuevoUsuario = {
-            nombre,
-            apellidos,
-            fechaNacimiento,
-            correo,
-            telefono,
-            tipoDocumento,
-            numeroDocumento,
-            contraseña,
-            direccion,
-            barrio,
-            ciudad,
-            departamento,
-            pais
+            nombre, apellidos, fechaNacimiento, correo, telefono,
+            tipoDocumento, numeroDocumento, contraseña,
+            direccion, barrio, ciudad, departamento, pais
         };
 
-        // Guardar la información del usuario en `localStorage`
         localStorage.setItem('usuario', JSON.stringify(nuevoUsuario));
-
-        // Mensaje de éxito
         alert('Registro exitoso. Ahora puedes iniciar sesión.');
     }
 
@@ -190,25 +164,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const correo = document.querySelector('input[placeholder="Usuario"]').value;
         const contraseña = document.querySelector('input[placeholder="Contraseña"]').value;
 
-        // Obtener la información del usuario desde `localStorage`
         const usuario = JSON.parse(localStorage.getItem('usuario'));
 
         if (usuario && usuario.correo === correo && usuario.contraseña === contraseña) {
-            localStorage.setItem('userName', usuario.nombre); // Guardar el nombre del usuario en `localStorage`
+            localStorage.setItem('userName', usuario.nombre);
             alert('Inicio de sesión exitoso.');
-            window.location.href = 'index.html'; // Redirigir al inicio
+            window.location.href = 'index.html';
         } else {
             alert('Credenciales incorrectas.');
         }
     }
 
     function cerrarSesion() {
-        localStorage.removeItem('userName'); // Eliminar la sesión del usuario
+        localStorage.removeItem('userName');
         alert('Has cerrado sesión.');
-        window.location.reload(); // Recargar la página
+        window.location.reload();
     }
 
-    // Mostrar el nombre del usuario al iniciar sesión
     const userName = localStorage.getItem('userName');
     if (userName) {
         document.body.classList.add('user-logged-in');

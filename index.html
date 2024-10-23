@@ -1,156 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Belleza</title>
+    <link rel="stylesheet" href="estilos.css">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-        }
-
-        header {
-            background-color: #fdd2e5;
-            padding: 10px;
+        /* Banner carousel */
+        .carousel {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo */
-        .logo img {
-            max-height: 60px;
-        }
-
-        /* Barra de búsqueda */
-        .search-bar {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-bar input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            width: 300px;
-            margin-right: 10px;
-        }
-
-        .search-bar button {
-            padding: 10px 20px;
-            background-color: #f475b3;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        /* Carrito y Login */
-        .account-cart {
-            display: flex;
-            align-items: center;
-        }
-
-        .account-cart a {
-            margin-left: 20px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .account-cart a:hover {
-            color: #f475b3;
-        }
-
-        /* Menú de navegación */
-        nav {
-            background-color: #fdd2e5;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #f475b3;
-        }
-
-        /* Banner principal */
-        .banner {
+            overflow: hidden;
             width: 100%;
-            margin: 20px 0;
+            height: 400px;
+            position: relative;
         }
 
-        .banner img {
+        .carousel img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            object-fit: cover; /* Asegura que la imagen se ajuste sin ser cortada */
+            transition: transform 0.5s ease-in-out;
         }
 
-        /* Sección de productos */
-        .products-section {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .product-card img {
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
             width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
         }
 
-        .product-card button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #f475b3;
+        .carousel-button-prev, .carousel-button-next {
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            border-radius: 20px;
+            padding: 10px;
             cursor: pointer;
-        }
-
-        .product-card button:hover {
-            background-color: #e0639b;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #fdd2e5;
-            padding: 20px;
-            text-align: center;
-        }
-
-        footer p {
-            color: #333;
         }
     </style>
 </head>
 <body>
 
-<!-- Header con logo, barra de búsqueda y carrito -->
+<!-- Header con logo y menú -->
 <header>
     <div class="logo">
         <img src="img/LOGO.JPG" alt="Logo de la tienda">
@@ -163,53 +55,62 @@
         <a href="cuidado-de-la-piel.html">Cuidado de la Piel</a>
         <a href="ojos.html">Ojos</a>
         <a href="carrito.html">Carrito</a>
-        <a href="inicio-sesion.html" class="login-link">Iniciar Sesión</a>
-        <!-- Este será el icono y nombre del usuario -->
-        <div class="user-info">
-            <img src="img/icono-usuario.png" alt="Icono de usuario">
-            <span id="user-name">NombreUsuario</span>
-        </div>
+        <a href="inicio-sesion.html">Iniciar Sesión</a>
     </nav>
 </header>
 
-
-<!-- Menú de navegación -->
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="accesorios.html">Accesorios</a>
-    <a href="brochas.html">Brochas</a>
-    <a href="labios.html">Labios</a>
-    <a href="cuidado-de-la-piel.html">Cuidado de la Piel</a>
-    <a href="ojos.html">Ojos</a>
-    <a href="carrito.html">Carrito</a>
-    <a href="inicio-sesion.html">Iniciar Sesión</a>
-</nav>
-
-<!-- Banner principal -->
-<section class="banner">
-    <img src="img/banner_accesorios.JPG" alt="Banner principal">
+<!-- Banner principal con carrusel -->
+<section class="carousel">
+    <img src="img/banner/banner1.JPG" alt="Banner principal">
+    <img src="img/banner/banner2.JPG" alt="Banner 2">
+    <img src="img/banner/banner3.JPG" alt="Banner 3">
+    <div class="carousel-buttons">
+        <button class="carousel-button-prev">&#10094;</button> <!-- Botón para imagen anterior -->
+        <button class="carousel-button-next">&#10095;</button> <!-- Botón para imagen siguiente -->
+    </div>
 </section>
 
 <!-- Sección de productos -->
 <section class="products-section">
     <div class="product-card">
-        <img src="https://via.placeholder.com/200x200" alt="Producto 1">
+        <img src="img/productos/producto1.jpg" alt="Producto 1">
         <h3>Producto 1</h3>
         <p>$25,000</p>
         <button>Agregar al Carrito</button>
     </div>
     
     <div class="product-card">
-        <img src="https://via.placeholder.com/200x200" alt="Producto 2">
+        <img src="img/productos/producto2.jpg" alt="Producto 2">
         <h3>Producto 2</h3>
         <p>$30,000</p>
         <button>Agregar al Carrito</button>
     </div>
 
     <div class="product-card">
-        <img src="https://via.placeholder.com/200x200" alt="Producto 3">
+        <img src="img/productos/producto3.jpg" alt="Producto 3">
         <h3>Producto 3</h3>
         <p>$15,000</p>
+        <button>Agregar al Carrito</button>
+    </div>
+
+    <div class="product-card">
+        <img src="img/productos/producto4.jpg" alt="Producto 4">
+        <h3>Producto 4</h3>
+        <p>$30,000</p>
+        <button>Agregar al Carrito</button>
+    </div>
+
+    <div class="product-card">
+        <img src="img/productos/producto5.jpg" alt="Producto 5">
+        <h3>Producto 5</h3>
+        <p>$30,000</p>
+        <button>Agregar al Carrito</button>
+    </div>
+
+    <div class="product-card">
+        <img src="img/productos/producto6.jpg" alt="Producto 6">
+        <h3>Producto 6</h3>
+        <p>$30,000</p>
         <button>Agregar al Carrito</button>
     </div>
 </section>
@@ -219,5 +120,6 @@
     <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
 </footer>
 
+<script src="js/script.js"></script>
 </body>
 </html>

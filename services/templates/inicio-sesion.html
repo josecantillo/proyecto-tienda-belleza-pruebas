@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="estilos.css">
+    <!-- <link rel="stylesheet" href="estilos.css"> -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
 </head>
 <body>
 
 <header>
     <div class="logo">
-        <img src="img/LOGO.JPG" alt="Logo de la tienda">
+		<img src="{{ url_for('static', filename='img/LOGO.JPG') }}" alt="Logo de la tienda">
+        <!-- <img src="img/LOGO.JPG" alt="Logo de la tienda"> -->
     </div>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="accesorios.html">Accesorios</a>
-        <a href="brochas.html">Brochas</a>
-        <a href="labios.html">Labios</a>
-        <a href="cuidado-de-la-piel.html">Cuidado de la Piel</a>
-        <a href="ojos.html">Ojos</a>
-        <a href="carrito.html">Carrito</a>
-        <a href="inicio-sesion.html">Iniciar Sesión</a>
-    </nav>
+	<nav>
+		<a href="{{ url_for('index') }}">Inicio</a>
+		<a href="{{ url_for('accesorios_html') }}">Accesorios</a>
+		<a href="{{ url_for('brochas_html') }}">Brochas</a>
+		<a href="{{ url_for('labios_html') }}">Labios</a>
+		<a href="{{ url_for('cuidado_de_la_piel_html') }}">Cuidado de la Piel</a>
+		<a href="{{ url_for('ojos_html') }}">Ojos</a>
+		<a href="{{ url_for('carrito_html') }}">Carrito</a>
+		<a href="{{ url_for('inicio_sesion_html') }}">Iniciar Sesión</a>
+	</nav>
 </header>
 
 <!-- Título de la sección -->
@@ -54,7 +56,8 @@
     <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
 </footer>
 
-<script src="js/script.js"></script>
+<!-- <script src="js/script.js"></script> -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>

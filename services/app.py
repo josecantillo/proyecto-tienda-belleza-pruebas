@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask import Flask, render_template
 import sqlite3
 import bcrypt
 
@@ -68,6 +69,42 @@ def login():
         return jsonify({"error": "Contraseña incorrecta"}), 401
 
     return jsonify({"mensaje": f"Bienvenido {usuario[1]}"}), 200
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/registro')
+def registro_html():
+    return render_template('registro.html')
+
+@app.route('/inicio-sesion')
+def inicio_sesion_html():
+    return render_template('inicio-sesion.html')
+
+@app.route('/cuidado-de-la-piel')
+def cuidado_de_la_piel_html():
+    return render_template('cuidado-de-la-piel.html')
+
+@app.route('/brochas')
+def brochas_html():
+    return render_template('brochas.html')
+
+@app.route('/labios')
+def labios_html():
+    return render_template('labios.html')
+
+@app.route('/ojos')
+def ojos_html():
+    return render_template('ojos.html')
+
+@app.route('/accesorios')
+def accesorios_html():
+    return render_template('accesorios.html')
+
+@app.route('/carrito')
+def carrito_html():
+    return render_template('carrito.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

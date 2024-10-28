@@ -108,82 +108,87 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Carrusel de imágenes del banner ---
-    let diapositivaActual = 0;
-    const diapositivas = document.querySelectorAll(".carousel img");
+    // --- Configuración del carrusel ---
+    const slides = document.querySelectorAll('.carousel img');
+    const prevButton = document.querySelector('.carousel-button-prev');
+    const nextButton = document.querySelector('.carousel-button-next');
+    let currentSlide = 0;
+    let autoSlideInterval;
+    const slideIntervalTime = 3000; // Tiempo en milisegundos (3 segundos)
 
-    function mostrarDiapositiva(indice) {
-        diapositivas.forEach((diapositiva, i) => {
-            diapositiva.style.transform = `translateX(${(i - indice) * 100}%)`;
+    // Verificar que las flechas y las imágenes existen en el DOM
+    if (slides.length > 0 && prevButton && nextButton) {
+        // Función para mostrar la diapositiva actual
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        // Función para pasar a la siguiente diapositiva
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Función para pasar a la diapositiva anterior
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Función para iniciar el cambio automático de diapositivas
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, slideIntervalTime);
+        }
+
+        // Función para detener el cambio automático de diapositivas
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Event listeners para los botones de navegación
+        prevButton.addEventListener('click', function () {
+            console.log('Flecha anterior clicada'); // Agregar log para verificar si funciona
+            stopAutoSlide();  // Detenemos el cambio automático temporalmente
+            prevSlide();
+            startAutoSlide(); // Reiniciamos el cambio automático
         });
+
+        nextButton.addEventListener('click', function () {
+            console.log('Flecha siguiente clicada'); // Agregar log para verificar si funciona
+            stopAutoSlide();  // Detenemos el cambio automático temporalmente
+            nextSlide();
+            startAutoSlide(); // Reiniciamos el cambio automático
+        });
+
+        // Iniciar el carrusel al cargar la página
+        showSlide(currentSlide);
+        startAutoSlide();
+    } else {
+        console.warn('No se encontraron las imágenes o los botones de navegación del carrusel.');
     }
-
-    function siguienteDiapositiva() {
-        diapositivaActual = (diapositivaActual + 1) % diapositivas.length;
-        mostrarDiapositiva(diapositivaActual);
-    }
-
-    function anteriorDiapositiva() {
-        diapositivaActual = (diapositivaActual - 1 + diapositivas.length) % diapositivas.length;
-        mostrarDiapositiva(diapositivaActual);
-    }
-
-    document.querySelector('.carousel-button-prev').addEventListener('click', anteriorDiapositiva);
-    document.querySelector('.carousel-button-next').addEventListener('click', siguienteDiapositiva);
-
-    // Inicializar el carrusel
-    mostrarDiapositiva(diapositivaActual);
+});
 
     // --- Registro e inicio de sesión ---
     function registrarUsuario() {
-        const nombre = document.querySelector('input[placeholder="Nombre"]').value;
-        const apellidos = document.querySelector('input[placeholder="Apellidos"]').value;
-        const fechaNacimiento = document.querySelector('input[placeholder="Fecha de Nacimiento"]').value;
-        const correo = document.querySelector('input[placeholder="Correo Electrónico"]').value;
-        const telefono = document.querySelector('input[placeholder="Teléfono"]').value;
-        const tipoDocumento = document.querySelector('select').value;
-        const numeroDocumento = document.querySelector('input[placeholder="Número de Documento"]').value;
-        const contraseña = document.querySelector('input[placeholder="Contraseña"]').value;
-        const direccion = document.querySelector('input[placeholder="Dirección"]').value;
-        const barrio = document.querySelector('input[placeholder="Barrio"]').value;
-        const ciudad = document.querySelector('input[placeholder="Ciudad"]').value;
-        const departamento = document.querySelector('input[placeholder="Departamento"]').value;
-        const pais = document.querySelector('input[placeholder="País"]').value;
-
-        const nuevoUsuario = {
-            nombre, apellidos, fechaNacimiento, correo, telefono,
-            tipoDocumento, numeroDocumento, contraseña,
-            direccion, barrio, ciudad, departamento, pais
-        };
-
-        localStorage.setItem('usuario', JSON.stringify(nuevoUsuario));
-        alert('Registro exitoso. Ahora puedes iniciar sesión.');
+        // Código de registro
     }
 
     function iniciarSesion() {
-        const correo = document.querySelector('input[placeholder="Usuario"]').value;
-        const contraseña = document.querySelector('input[placeholder="Contraseña"]').value;
-
-        const usuario = JSON.parse(localStorage.getItem('usuario'));
-
-        if (usuario && usuario.correo === correo && usuario.contraseña === contraseña) {
-            localStorage.setItem('userName', usuario.nombre);
-            alert('Inicio de sesión exitoso.');
-            window.location.href = 'index.html';
-        } else {
-            alert('Credenciales incorrectas.');
-        }
+        // Código de inicio de sesión
     }
 
     function cerrarSesion() {
-        localStorage.removeItem('userName');
-        alert('Has cerrado sesión.');
-        window.location.reload();
+        // Código para cerrar sesión
     }
 
     const userName = localStorage.getItem('userName');
     if (userName) {
         document.body.classList.add('user-logged-in');
-        document.getElementById('user-name').textContent = userName;
+        const userNameElement = document.getElementById('user-name');
+        if (userNameElement) {
+            userNameElement.textContent = userName;
+        }
     }
 });

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Belleza</title>
-    <link rel="stylesheet" href="estilos.css">
+    <!-- <link rel="stylesheet" href="estilos.css"> -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
     <style>
         /* Banner carousel */
         .carousel {
@@ -45,81 +46,84 @@
 <!-- Header con logo y menú -->
 <header>
     <div class="logo">
-        <img src="img/LOGO.JPG" alt="Logo de la tienda">
+		<img src="{{ url_for('static', filename='img/LOGO.JPG') }}" alt="Logo de la tienda">
+        <!-- <img src="img/LOGO.JPG" alt="Logo de la tienda"> -->
     </div>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="accesorios.html">Accesorios</a>
-        <a href="brochas.html">Brochas</a>
-        <a href="labios.html">Labios</a>
-        <a href="cuidado-de-la-piel.html">Cuidado de la Piel</a>
-        <a href="ojos.html">Ojos</a>
-        <a href="carrito.html">Carrito</a>
-        <a href="inicio-sesion.html">Iniciar Sesión</a>
-    </nav>
+	<nav>
+		<a href="{{ url_for('index') }}">Inicio</a>
+		<a href="{{ url_for('accesorios_html') }}">Accesorios</a>
+		<a href="{{ url_for('brochas_html') }}">Brochas</a>
+		<a href="{{ url_for('labios_html') }}">Labios</a>
+		<a href="{{ url_for('cuidado_de_la_piel_html') }}">Cuidado de la Piel</a>
+		<a href="{{ url_for('ojos_html') }}">Ojos</a>
+		<a href="{{ url_for('carrito_html') }}">Carrito</a>
+		<a href="{{ url_for('inicio_sesion_html') }}">Iniciar Sesión</a>
+	</nav>
 </header>
 
 <!-- Banner principal con carrusel -->
 <section class="carousel">
-    <img src="img/banner/banner1.JPG" alt="Banner principal">
-    <img src="img/banner/banner2.JPG" alt="Banner 2">
-    <img src="img/banner/banner3.JPG" alt="Banner 3">
+    <img src="{{ url_for('static', filename='img/banner/banner1.JPG') }}" alt="Banner 1">
+    <img src="{{ url_for('static', filename='img/banner/banner2.JPG') }}" alt="Banner 2">
+    <img src="{{ url_for('static', filename='img/banner/banner3.JPG') }}" alt="Banner 3">
     <div class="carousel-buttons">
-        <button class="carousel-button-prev">&#10094;</button> <!-- Botón para imagen anterior -->
-        <button class="carousel-button-next">&#10095;</button> <!-- Botón para imagen siguiente -->
+        <button class="carousel-button-prev">&#10094;</button>
+        <button class="carousel-button-next">&#10095;</button>
     </div>
 </section>
 
 <!-- Sección de productos -->
 <section class="products-section">
     <div class="product-card">
-        <img src="img/productos/producto1.jpg" alt="Producto 1">
+        <img src="{{ url_for('static', filename='img/productos/producto1.jpg') }}" alt="Producto 1">
         <h3>Producto 1</h3>
         <p>$25,000</p>
         <button>Agregar al Carrito</button>
     </div>
     
     <div class="product-card">
-        <img src="img/productos/producto2.jpg" alt="Producto 2">
+        <img src="{{ url_for('static', filename='img/productos/producto2.jpg') }}" alt="Producto 2">
         <h3>Producto 2</h3>
         <p>$30,000</p>
         <button>Agregar al Carrito</button>
     </div>
 
     <div class="product-card">
-        <img src="img/productos/producto3.jpg" alt="Producto 3">
+        <img src="{{ url_for('static', filename='img/productos/producto3.jpg') }}" alt="Producto 3">
         <h3>Producto 3</h3>
         <p>$15,000</p>
         <button>Agregar al Carrito</button>
     </div>
 
     <div class="product-card">
-        <img src="img/productos/producto4.jpg" alt="Producto 4">
+        <img src="{{ url_for('static', filename='img/productos/producto4.jpg') }}" alt="Producto 4">
         <h3>Producto 4</h3>
         <p>$30,000</p>
         <button>Agregar al Carrito</button>
     </div>
 
     <div class="product-card">
-        <img src="img/productos/producto5.jpg" alt="Producto 5">
+        <img src="{{ url_for('static', filename='img/productos/producto5.jpg') }}" alt="Producto 5">
         <h3>Producto 5</h3>
         <p>$30,000</p>
         <button>Agregar al Carrito</button>
     </div>
 
     <div class="product-card">
-        <img src="img/productos/producto6.jpg" alt="Producto 6">
+        <img src="{{ url_for('static', filename='img/productos/producto6.jpg') }}" alt="Producto 6">
         <h3>Producto 6</h3>
         <p>$30,000</p>
         <button>Agregar al Carrito</button>
     </div>
 </section>
 
+
 <!-- Footer -->
 <footer>
     <p>&copy; 2024 Tienda de Belleza. Todos los derechos reservados.</p>
 </footer>
 
-<script src="js/script.js"></script>
+<!-- <script src="js/script.js"></script> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
 </body>
 </html>

@@ -46,8 +46,8 @@
 <!-- Header con logo y menú -->
 <header>
     <div class="logo">
-		<img src="{{ url_for('static', filename='img/LOGO.JPG') }}" alt="Logo de la tienda">
-        <!-- <img src="img/LOGO.JPG" alt="Logo de la tienda"> -->
+		<img src="{{ url_for('static', filename='img/logo.JPG') }}" alt="Logo de la tienda">
+        <!-- <img src="img/logo.JPG" alt="Logo de la tienda"> -->
     </div>
 	<nav>
 		<a href="{{ url_for('index') }}">Inicio</a>
@@ -58,6 +58,7 @@
 		<a href="{{ url_for('ojos_html') }}">Ojos</a>
 		<a href="{{ url_for('carrito_html') }}">Carrito</a>
 		<a href="{{ url_for('inicio_sesion_html') }}">Iniciar Sesión</a>
+		<a href="{{ url_for('registro_html') }}">Registro</a>
 	</nav>
 </header>
 

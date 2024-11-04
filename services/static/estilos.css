@@ -427,6 +427,11 @@ nav a:hover {
     color: #fff;
 }
 
+/* O agregar margen superior al contenedor del banner */
+.carousel {
+    margin-top: 20px; /* Ajusta el valor según el espacio que necesites */
+}
+
 .carousel {
     display: flex;
     overflow: hidden;
@@ -459,6 +464,19 @@ nav a:hover {
     padding: 10px;
     cursor: pointer;
     z-index: 2; /* Asegura que los botones estén por encima de las imágenes */
+}
+
+.product-card h3 {
+    margin: 5px 0; /* Reduce el margen superior e inferior del nombre */
+}
+
+.product-card p {
+    margin: 5px 0; /* Reduce el margen superior e inferior del precio */
+}
+
+.product-card button {
+    margin-top: 5px; /* Reduce el espacio entre el precio y el botón */
+    padding: 8px 16px; /* Ajusta el padding según sea necesario */
 }
 
 

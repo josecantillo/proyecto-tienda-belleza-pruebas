@@ -5,45 +5,70 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     actualizarCarrito();
+	
+    // Función para redirigir al index al hacer clic en "Seguir comprando"
+    const btnSeguirComprando = document.getElementById('seguir-comprando');
+    if (btnSeguirComprando) {
+        btnSeguirComprando.addEventListener('click', function () {
+            window.location.href = '/';  // Redirige al index
+        });
+    }
 
-    function actualizarCarrito() {
-        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        const contenedorCarrito = document.querySelector('.carrito-productos');
-        const resumenTotal = document.querySelector('.resumen-detalles span');
+    // Función para vaciar el carrito al hacer clic en "Vaciar carrito"
+    const btnVaciarCarrito = document.getElementById('vaciar-carrito');
+    if (btnVaciarCarrito) {
+        btnVaciarCarrito.addEventListener('click', function () {
+            localStorage.setItem('carrito', JSON.stringify([]));  // Vacía el carrito
+            actualizarCarrito();  // Actualiza la vista del carrito
+        });
+    }
 
-        if (contenedorCarrito) {
-            contenedorCarrito.innerHTML = '';  // Limpiar contenido del carrito
+function actualizarCarrito() {
+	console.log("Ejecutando actualizarCarrito"); // Verifica si la función se llama correctamente
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	console.log("Contenido del carrito:", carrito); // Muestra el contenido del carrito en consola
+    const contenedorCarrito = document.querySelector('.carrito-productos');
+    const subtotalElement = document.querySelector('#subtotal');
+    const totalElement = document.querySelector('#total');
 
-            let total = 0;
-            carrito.forEach(producto => {
-                const productoHTML = `
-                    <div class="carrito-producto">
-                        <div class="producto-info">
-                            <img src="${producto.imagen}" alt="${producto.nombre}">
-                            <div class="producto-detalles">
-                                <h3>${producto.nombre}</h3>
-                                <p>$${(producto.precio * producto.cantidad).toFixed(0)}</p>
-                            </div>
-                        </div>
-                        <div class="producto-cantidad">
-                            <button class="btn-disminuir" data-nombre="${producto.nombre}">➖</button>
-                            <span>${producto.cantidad} und.</span>
-                            <button class="btn-incrementar" data-nombre="${producto.nombre}">➕</button>
-                            <button class="btn-eliminar" data-nombre="${producto.nombre}">❌</button>
+    if (contenedorCarrito) {
+        contenedorCarrito.innerHTML = '';
+        let subtotal = 0;
+
+        carrito.forEach(producto => {
+            const productoHTML = `
+                <div class="carrito-producto">
+                    <div class="producto-info">
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
+                        <div class="producto-detalles">
+                            <h3>${producto.nombre}</h3>
+                            <p>$${(producto.precio * producto.cantidad).toFixed(0)}</p>
                         </div>
                     </div>
-                `;
-                contenedorCarrito.innerHTML += productoHTML;
-                total += producto.precio * producto.cantidad;
-            });
+                    <div class="producto-cantidad">
+                        <button class="btn-disminuir" data-nombre="${producto.nombre}">➖</button>
+                        <span>${producto.cantidad} und.</span>
+                        <button class="btn-incrementar" data-nombre="${producto.nombre}">➕</button>
+                    </div>
+                </div>
+            `;
+            contenedorCarrito.innerHTML += productoHTML;
+            subtotal += producto.precio * producto.cantidad;
+        });
 
-            if (resumenTotal) {
-                resumenTotal.textContent = `$${total.toFixed(0)}`;
-            }
-
-            agregarEventosCarrito();
+        if (subtotalElement) {
+            subtotalElement.textContent = `$${subtotal.toFixed(0)}`;
         }
+
+        // Ajusta el total para que sea igual al subtotal o aplica cambios si tienes impuestos, descuentos, etc.
+        if (totalElement) {
+            totalElement.textContent = `$${subtotal.toFixed(0)}`;
+        }
+
+        agregarEventosCarrito();
     }
+}
+
 
     function agregarProducto(nombreProducto, precioProducto, imagenProducto) {
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -77,100 +102,66 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.btn-incrementar').forEach(boton => {
             boton.addEventListener('click', function () {
                 const nombreProducto = this.getAttribute('data-nombre');
-                agregarProducto(nombreProducto, 0, '');  // Incrementar cantidad
+                const producto = JSON.parse(localStorage.getItem('carrito')).find(p => p.nombre === nombreProducto);
+                agregarProducto(nombreProducto, producto.precio, producto.imagen);
             });
         });
 
         document.querySelectorAll('.btn-disminuir').forEach(boton => {
             boton.addEventListener('click', function () {
                 const nombreProducto = this.getAttribute('data-nombre');
-                eliminarProducto(nombreProducto);  // Disminuir cantidad
-            });
-        });
-
-        document.querySelectorAll('.btn-eliminar').forEach(boton => {
-            boton.addEventListener('click', function () {
-                const nombreProducto = this.getAttribute('data-nombre');
-                eliminarProducto(nombreProducto);  // Eliminar producto completamente
+                eliminarProducto(nombreProducto);
             });
         });
     }
 
-    // Evento para agregar productos desde la página de productos
-    document.querySelectorAll('.btn-agregar-carrito').forEach(boton => {
-        boton.addEventListener('click', function () {
-            const productoCard = this.closest('.product-card');
-            const nombreProducto = productoCard.querySelector('h3').textContent;
-            const precioProducto = parseFloat(productoCard.querySelector('p').textContent.replace('$', '').replace(',', ''));
-            const imagenProducto = productoCard.querySelector('img').src;
+    // Evento para gestionar los botones de productos en las páginas
+    document.querySelectorAll('.product-card').forEach(productoCard => {
+        const botonAgregar = productoCard.querySelector('.btn-agregar-carrito');
+        const nombreProducto = productoCard.querySelector('h3').textContent;
+        const precioProducto = parseFloat(productoCard.querySelector('p').textContent.replace('$', '').replace(',', ''));
+        const imagenProducto = productoCard.querySelector('img').src;
 
+        function mostrarControlesCantidad(cantidad) {
+            botonAgregar.outerHTML = `
+                <div class="producto-cantidad-controles">
+                    <button class="btn-disminuir" data-nombre="${nombreProducto}">➖</button>
+                    <span>${cantidad} und.</span>
+                    <button class="btn-incrementar" data-nombre="${nombreProducto}">➕</button>
+                </div>
+            `;
+            agregarEventosCarrito();
+        }
+
+        botonAgregar.addEventListener('click', function () {
             agregarProducto(nombreProducto, precioProducto, imagenProducto);
+            mostrarControlesCantidad(1);
         });
     });
 
-    // --- Configuración del carrusel ---
+    // --- Funcionalidad del banner ---
     const slides = document.querySelectorAll('.carousel img');
-    const prevButton = document.querySelector('.carousel-button-prev');
-    const nextButton = document.querySelector('.carousel-button-next');
     let currentSlide = 0;
-    let autoSlideInterval;
-    const slideIntervalTime = 3000; // Tiempo en milisegundos (3 segundos)
+    const slideIntervalTime = 5000;
 
-    // Verificar que las flechas y las imágenes existen en el DOM
-    if (slides.length > 0 && prevButton && nextButton) {
-        // Función para mostrar la diapositiva actual
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.display = i === index ? 'block' : 'none';
-            });
-        }
-
-        // Función para pasar a la siguiente diapositiva
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        // Función para pasar a la diapositiva anterior
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        // Función para iniciar el cambio automático de diapositivas
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, slideIntervalTime);
-        }
-
-        // Función para detener el cambio automático de diapositivas
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Event listeners para los botones de navegación
-        prevButton.addEventListener('click', function () {
-            console.log('Flecha anterior clicada'); // Agregar log para verificar si funciona
-            stopAutoSlide();  // Detenemos el cambio automático temporalmente
-            prevSlide();
-            startAutoSlide(); // Reiniciamos el cambio automático
+    function nextSlide() {
+        slides.forEach((slide, index) => {
+            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
         });
-
-        nextButton.addEventListener('click', function () {
-            console.log('Flecha siguiente clicada'); // Agregar log para verificar si funciona
-            stopAutoSlide();  // Detenemos el cambio automático temporalmente
-            nextSlide();
-            startAutoSlide(); // Reiniciamos el cambio automático
-        });
-
-        // Iniciar el carrusel al cargar la página
-        showSlide(currentSlide);
-        startAutoSlide();
-    } else {
-        console.warn('No se encontraron las imágenes o los botones de navegación del carrusel.');
+        currentSlide = (currentSlide + 1) % slides.length;
     }
-});
 
-// --- Registro e inicio de sesión ---
+    // Configura la posición inicial para cada imagen del banner
+    slides.forEach((slide, index) => {
+        slide.style.position = 'absolute';
+        slide.style.left = `${index * 100}%`; // Posiciona cada imagen consecutivamente
+        slide.style.transition = 'transform 1s ease'; // Suaviza la transición
+    });
+
+    // Cambia la imagen cada 3 segundos
+    setInterval(nextSlide, slideIntervalTime);
+
+    // --- Registro e inicio de sesión ---
     function registrarUsuario() {
         const nombre = document.querySelector('input[placeholder="Nombre"]').value;
         const correo = document.querySelector('input[placeholder="Correo Electrónico"]').value;

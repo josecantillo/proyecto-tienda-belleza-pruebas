@@ -40,14 +40,14 @@
         <input type="text" placeholder="Cupón de descuento">
         <button class="btn-aplicar">Aplicar</button>
 
-        <div class="resumen-detalles">
-            <p>Subtotal: <span>$0.00</span></p>
-            <h3>Total: <span>$0.00</span></h3>
-        </div>
+	<div class="resumen-detalles">
+		<p>Subtotal: <span id="subtotal">$0.00</span></p>
+		<h3>Total: <span id="total">$0.00</span></h3>
+	</div>
 
         <button class="btn-pagar">Ir a pagar / Total</button>
-        <button class="btn-seguir-comprando">Seguir comprando</button>
-        <button class="btn-vaciar-carrito">Vaciar carrito</button>
+		<button id="seguir-comprando">Seguir comprando</button>
+		<button id="vaciar-carrito">Vaciar carrito</button>
     </div>
 </section>
 
@@ -59,3 +59,4 @@
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+

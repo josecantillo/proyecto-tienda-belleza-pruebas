@@ -170,25 +170,48 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-    // --- Registro e inicio de sesión ---
+// --- Registro e inicio de sesión ---
     function registrarUsuario() {
-        // Código de registro
+        const nombre = document.querySelector('input[placeholder="Nombre"]').value;
+        const correo = document.querySelector('input[placeholder="Correo Electrónico"]').value;
+        const contraseña = document.querySelector('input[placeholder="Contraseña"]').value;
+
+        fetch('/registro', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, correo, contraseña })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert('Usuario registrado exitosamente');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     function iniciarSesion() {
-        // Código de inicio de sesión
-    }
+        const correo = document.querySelector('input[placeholder="Usuario"]').value;
+        const contraseña = document.querySelector('input[placeholder="Contraseña"]').value;
 
-    function cerrarSesion() {
-        // Código para cerrar sesión
+        fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ correo, contraseña })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert(`Bienvenido ${data.mensaje}`);
+                localStorage.setItem('userName', data.mensaje);
+                document.body.classList.add('user-logged-in');
+                document.getElementById('user-name').textContent = data.mensaje;
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
-
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-        document.body.classList.add('user-logged-in');
-        const userNameElement = document.getElementById('user-name');
-        if (userNameElement) {
-            userNameElement.textContent = userName;
-        }
-    }
-};
+});
